@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Obsidian & Velvet Black Base */
+  --bg-main: #08080a;
+  --bg-surface: #101014;
+  --bg-elevated: #16161c;
+  
+  /* Metallic 24K Gold Scale */
+  --gold-50: #fffdf5;
+  --gold-100: #fff5cc;
+  --gold-200: #fae48c;
+  --gold-300: #eed060;
+  --gold-400: #e2ba3c;
+  --gold-500: #d4af37; /* Canonical Imperial Gold */
+  --gold-600: #b88e28;
+  --gold-700: #936e1b;
+  --gold-800: #6e5111;
+  --gold-900: #463208;
+  
+  /* Luminous Glows & Shimmer */
+  --primary: #d4af37;
+  --primary-hover: #fae48c;
+  --primary-glow: rgba(212, 175, 55, 0.35);
+  --primary-glow-high: rgba(250, 228, 140, 0.6);
+  --secondary: #aa7a1e;
+  --secondary-glow: rgba(170, 122, 30, 0.3);
+  
+  /* Obsidian Glass Surfaces */
+  --card-bg: rgba(14, 14, 18, 0.78);
+  --card-border: rgba(212, 175, 55, 0.22);
+  --card-border-hover: rgba(250, 228, 140, 0.45);
+  --card-inner-bevel: inset 0 1px 1px rgba(255, 238, 170, 0.15);
+  
+  /* Typography & Text */
+  --text-main: #fbfbfa;
+  --text-gold: #f0d57d;
+  --text-muted: #a19d93;
+  --text-dim: #6b675e;
+  
+  /* Accents */
+  --success: #34d399;
+  --success-glow: rgba(52, 211, 153, 0.3);
+  --danger: #ef4444;
+  --danger-hover: #f87171;
+  --danger-glow: rgba(239, 68, 68, 0.35);
+
+  /* Gold Luxury Gradients */
+  --gold-gradient: linear-gradient(135deg, #f7e6a1 0%, #d4af37 45%, #a6751c 100%);
+  --gold-gradient-hover: linear-gradient(135deg, #fff0b8 0%, #e2be4a 45%, #b88624 100%);
+  --gold-text-gradient: linear-gradient(135deg, #fff7d6 0%, #e8c85c 40%, #c9972c 80%, #9e7018 100%);
+  --dark-gradient: linear-gradient(180deg, rgba(22, 22, 28, 0.85) 0%, rgba(12, 12, 15, 0.95) 100%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+/* Custom Gold Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #09090c;
+}
+::-webkit-scrollbar-thumb {
+  background: #25221b;
+  border-radius: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-600);
+}
+
+/* Base Utility - Obsidian Glass Card */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--card-border);
+  box-shadow: 
+    0 24px 60px -12px rgba(0, 0, 0, 0.85),
+    0 0 25px rgba(212, 175, 55, 0.05),
+    var(--card-inner-bevel);
+  border-radius: 24px;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Premium Gold CTA Button */
+.btn-gradient {
+  background: var(--gold-gradient);
+  color: #08080a;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 240, 180, 0.4);
+  box-shadow: 
+    0 4px 20px var(--primary-glow),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  z-index: 1;
+}
+
+.btn-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--gold-gradient-hover);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: -1;
+}
+
+/* Gold Shimmer Light Beam */
+.btn-gradient::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 80%
+  );
+  transform: rotate(25deg);
+  transition: transform 0.65s ease;
+  pointer-events: none;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 30px rgba(212, 175, 55, 0.55),
+    0 0 15px rgba(250, 228, 140, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 245, 204, 0.8);
+}
+
+.btn-gradient:hover::before {
+  opacity: 1;
+}
+
+.btn-gradient:hover::after {
+  transform: translateX(380%) rotate(25deg);
+}
+
+.btn-gradient:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 2px 10px var(--primary-glow);
+}
+
+/* Custom Gold Cursor (Desktop Only) */
+@media (pointer: fine) {
+  body {
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4" fill="%23d4af37" /><circle cx="12" cy="12" r="9" stroke="%23eed060" stroke-width="1.5" stroke-opacity="0.6"/></svg>') 12 12, auto;
+  }
+  
+  a, button, input[type="submit"], .icon-btn, .add-btn, .login-btn, input[type="checkbox"] {
+    cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5" fill="%23fff2a3" /><circle cx="12" cy="12" r="11" stroke="%23d4af37" stroke-width="1.8" stroke-opacity="0.9"/></svg>') 12 12, pointer !important;
+  }
+}
+
+/* Luxury Dark & Gold Ambient Background */
+.ambient-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: -1;
+  background: radial-gradient(ellipse at 50% 0%, #121218 0%, #08080a 75%);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Geometric Gold Matrix Grid */
+.ambient-bg::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 40%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 20%, transparent 80%);
+}
+
+/* Floating Gold Nebula 1 */
+.ambient-blob-1 {
+  position: absolute;
+  top: -15%;
+  left: 20%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 750px;
+  max-height: 750px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.16) 0%, rgba(170, 122, 30, 0.06) 45%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.85;
+  animation: floatGold 22s ease-in-out infinite alternate;
+}
+
+/* Floating Gold Nebula 2 */
+.ambient-blob-2 {
+  position: absolute;
+  bottom: -20%;
+  right: 15%;
+  width: 65vw;
+  height: 65vw;
+  max-width: 850px;
+  max-height: 850px;
+  background: radial-gradient(circle, rgba(184, 142, 40, 0.12) 0%, rgba(110, 81, 17, 0.04) 50%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.7;
+  animation: floatGoldReverse 28s ease-in-out infinite alternate;
+}
+
+@keyframes floatGold {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(4%, 6%) scale(1.08);
+  }
+  100% {
+    transform: translate(-4%, 3%) scale(0.95);
+  }
+}
+
+@keyframes floatGoldReverse {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-6%, -5%) scale(1.1);
+  }
+  100% {
+    transform: translate(5%, -3%) scale(0.92);
+  }
+}
